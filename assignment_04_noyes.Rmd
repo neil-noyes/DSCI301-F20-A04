@@ -1,0 +1,47 @@
+---
+title: "Assignment 4"
+author: "Neil Noyes"
+date: "9/12/2020"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. Return to the `iris` data set included in R.  Examine the distributions of `Sepal.Length` and `Sepal.Width`.  Produce a graph (or two) which represent these distributions.
+```{r}
+library(tidyverse)
+
+iris %>%
+  ggplot(aes(x = Sepal.Width)) +
+  geom_histogram(position="identity", colour="grey40", alpha=0.2, bins = 10)
+
+iris %>%
+  ggplot(aes(x = Sepal.Length))+
+  geom_histogram(position="identity", colour="grey40", alpha=0.2, bins = 5)
+```
+
+What can you say about the variation of `Sepal.Length` and `Sepal.Width`
+
+```{r}
+iris %>%
+  summarize(SW_mean = mean(Sepal.Width),
+            SW_median = median(Sepal.Width),
+            SL_mean = mean(Sepal.Length),
+            SL_median = median(Sepal.Length))
+```
+  
+
+  **Sepal widths** appear to have a normal distribution where widths of ~3.0cm (variance of +-0.5cm) are most   common with counts >= 30, whereas there are low counts of sepal widths less than ~2.0cm or greater than       ~4.0cm (< 5 counts each).
+  
+  **Sepal lengths** seem to be clustered around 5-7cm with little variance. 
+
+
+2. Examine how the categorical variable `Species` affects the distribution of `Sepal.Length` and `Sepal.Width`.  Produce a graph (or two) which shows clearly the relationship you would like to demonstrate.  Can the covariation here help explain some of the patterns we saw in first exploration?
+
+
+
+3. Examine the distribution of `Sepal.Width` now for data in only the species *virginica* in the data set.  What can you say about the distribution?
