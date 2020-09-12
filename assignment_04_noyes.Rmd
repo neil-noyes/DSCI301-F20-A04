@@ -11,7 +11,8 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-1. Return to the `iris` data set included in R.  Examine the distributions of `Sepal.Length` and `Sepal.Width`.  Produce a graph (or two) which represent these distributions.
+## 1 :: Return to the `iris` data set included in R.  Examine the distributions of `Sepal.Length` and `Sepal.Width`.  Produce a graph (or two) which represent these distributions.
+
 ```{r}
 library(tidyverse)
 
@@ -21,10 +22,20 @@ iris %>%
 
 iris %>%
   ggplot(aes(x = Sepal.Length))+
+  geom_histogram(position="identity", colour="grey40", alpha=0.2, bins = 10)
+```
+
+I don't really think you can conclude very much out of the sepal length's, so I will try a smaller bin width..
+```{r}
+iris %>%
+  ggplot(aes(x = Sepal.Length))+
   geom_histogram(position="identity", colour="grey40", alpha=0.2, bins = 5)
 ```
 
-What can you say about the variation of `Sepal.Length` and `Sepal.Width`
+This gives us more of a grouping around 5-7cm.
+
+
+## What can you say about the variation of `Sepal.Length` and `Sepal.Width`?
 
 ```{r}
 iris %>%
@@ -40,8 +51,42 @@ iris %>%
   **Sepal lengths** seem to be clustered around 5-7cm with little variance. 
 
 
-2. Examine how the categorical variable `Species` affects the distribution of `Sepal.Length` and `Sepal.Width`.  Produce a graph (or two) which shows clearly the relationship you would like to demonstrate.  Can the covariation here help explain some of the patterns we saw in first exploration?
+## 2 :: Examine how the categorical variable `Species` affects the distribution of `Sepal.Length` and  `Sepal.Width`.  Produce a graph (or two) which shows clearly the relationship you would like to demonstrate. 
 
+Sepal Width's by Species
+```{r}
+iris %>%
+  ggplot() +
+  geom_histogram(aes(x = Sepal.Width, fill = Species), binwidth = 0.5) +
+  facet_wrap(~Species)
+```
 
+Sepal Length's by Species
+```{r}
+iris %>%
+  ggplot() +
+  geom_histogram(aes(x = Sepal.Length, fill = Species), binwidth = 0.5) +
+  facet_wrap(~Species)
+```
 
-3. Examine the distribution of `Sepal.Width` now for data in only the species *virginica* in the data set.  What can you say about the distribution?
+## Can the covariation here help explain some of the patterns we saw in first exploration?
+
+  **Sepal Widths:**
+    The covariation for sepal widths by species follows what we saw for the sepal widths all together; Among      all species, there are the most widths of around that 3.0cm mark.
+
+  **Sepal Lengths:**
+    The covariation for sepal lengths by species explains how there wasn't a clear peak for all of the species     together. Setosa averages around 5cm, Versicolor 5.5-6cm, and Virginica 6.5cm, which explains why when the     bin width was reduced, we saw the majority falling in between 5-7cm.
+
+## 3 :: Examine the distribution of `Sepal.Width` now for data in only the species *virginica* in the data set. 
+
+```{r}
+iris %>%
+  filter(Species == "virginica") %>%
+  ggplot() +
+  geom_histogram(colour="grey40", alpha=0.2, aes(x = Sepal.Width), binwidth = 0.25)
+
+```
+
+## What can you say about the distribution?
+
+  The distribution has an average of ~3.0cm and is fairly normal. 
