@@ -34,6 +34,9 @@ iris %>%
 
 This gives us more of a grouping around 5-7cm.
 
+<span style="color: green; font-size: 14pt">*Comments:*  
+        This is a good choice for graphs, but make sure all graphs have good labels (titles, axes).
+    </span>
 
 ## What can you say about the variation of `Sepal.Length` and `Sepal.Width`?
 
@@ -76,6 +79,10 @@ iris %>%
 
   **Sepal Lengths:**
     The covariation for sepal lengths by species explains how there wasn't a clear peak for all of the species     together. Setosa averages around 5cm, Versicolor 5.5-6cm, and Virginica 6.5cm, which explains why when the     bin width was reduced, we saw the majority falling in between 5-7cm.
+
+<span style="color: green; font-size: 14pt">*Comments:*  
+        Nice graphs!
+    </span>
 
 ## 3 :: Examine the distribution of `Sepal.Width` now for data in only the species *virginica* in the data set. 
 
